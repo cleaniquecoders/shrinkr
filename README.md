@@ -1,84 +1,99 @@
-# Shrinkr is a Laravel package for shortening URLs, with custom slugs, analytics, branded domains, and seamless API integration.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/cleaniquecoders/shrinkr.svg?style=flat-square)](https://packagist.org/packages/cleaniquecoders/shrinkr) [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3Arun-tests+branch%3Amain) [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain) [![Total Downloads](https://img.shields.io/packagist/dt/cleaniquecoders/shrinkr.svg?style=flat-square)](https://packagist.org/packages/cleaniquecoders/shrinkr)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/cleaniquecoders/shrinkr.svg?style=flat-square)](https://packagist.org/packages/cleaniquecoders/shrinkr)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/cleaniquecoders/shrinkr.svg?style=flat-square)](https://packagist.org/packages/cleaniquecoders/shrinkr)
+---
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+# Shrinkr
 
-## Support us
+Shrinkr is a Laravel package for shortening URLs, offering custom slugs, analytics, branded domains, and API integration.
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/shrinkr.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/shrinkr)
+Shrinkr makes it easy to convert long URLs into short, shareable links. With features like **custom slugs**, **click analytics**, **branded domains**, and seamless **API support**, Shrinkr empowers users to manage URLs effectively.
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+---
 
 ## Installation
 
-You can install the package via composer:
+Install the package via Composer:
 
 ```bash
 composer require cleaniquecoders/shrinkr
 ```
 
-You can publish and run the migrations with:
+Publish the migration files and migrate:
 
 ```bash
 php artisan vendor:publish --tag="shrinkr-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
+Publish the config file:
 
 ```bash
 php artisan vendor:publish --tag="shrinkr-config"
 ```
 
-This is the contents of the published config file:
+The published configuration file (`config/shrinkr.php`) will allow you to customize settings.
 
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
+Optionally, publish the views:
 
 ```bash
 php artisan vendor:publish --tag="shrinkr-views"
 ```
 
+---
+
 ## Usage
 
+Here’s a basic usage example:
+
 ```php
-$shrinkr = new CleaniqueCoders\Shrinkr();
-echo $shrinkr->echoPhrase('Hello, CleaniqueCoders!');
+use CleaniqueCoders\Shrinkr\Facades\Shrinkr;
+
+// Shorten a URL
+$shortUrl = Shrinkr::shorten('https://example.com/long-url');
+echo $shortUrl; // Outputs: https://yourdomain.com/abc123
+
+// Retrieve the original URL
+$originalUrl = Shrinkr::resolve('abc123');
+echo $originalUrl; // Outputs: https://example.com/long-url
 ```
 
+---
+
 ## Testing
+
+Run the tests using:
 
 ```bash
 composer test
 ```
 
+---
+
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Refer to the [CHANGELOG](CHANGELOG.md) for the latest updates and changes.
+
+---
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+We welcome contributions! Please see [CONTRIBUTING](CONTRIBUTING.md) for guidelines.
+
+---
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Report security vulnerabilities by reviewing [our security policy](../../security/policy).
+
+---
 
 ## Credits
 
 - [Nasrul Hazim Bin Mohamad](https://github.com/nasrulhazim)
 - [All Contributors](../../contributors)
 
+---
+
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+Shrinkr is open-sourced software licensed under the [MIT license](LICENSE.md).
