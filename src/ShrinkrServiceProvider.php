@@ -2,9 +2,9 @@
 
 namespace CleaniqueCoders\Shrinkr;
 
+use CleaniqueCoders\Shrinkr\Commands\ShrinkrCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use CleaniqueCoders\Shrinkr\Commands\ShrinkrCommand;
 
 class ShrinkrServiceProvider extends PackageServiceProvider
 {

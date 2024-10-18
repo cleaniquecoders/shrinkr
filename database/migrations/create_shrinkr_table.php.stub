@@ -8,12 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('shrinkr_table', function (Blueprint $table) {
+        Schema::create('urls', function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
+            $table->string('original_url');
+            $table->string('shortened_url')->unique();
+            $table->string('custom_slug')->nullable()->unique();
+            $table->boolean('is_expired')->default(false);
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('urls');
     }
 };
