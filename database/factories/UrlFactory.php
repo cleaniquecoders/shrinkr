@@ -5,7 +5,7 @@ namespace CleaniqueCoders\Shrinkr\Database\Factories;
 use CleaniqueCoders\Shrinkr\Models\Url;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ModelFactory extends Factory
+class UrlFactory extends Factory
 {
     protected $model = Url::class;
 

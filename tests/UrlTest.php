@@ -1,6 +1,8 @@
 <?php
 
 use CleaniqueCoders\Shrinkr\Actions\CreateShortUrlAction;
+use CleaniqueCoders\Shrinkr\Actions\DeleteShortUrlAction;
+use CleaniqueCoders\Shrinkr\Actions\UpdateShortUrlAction;
 use CleaniqueCoders\Shrinkr\Models\Url;
 
 beforeEach(function () {
@@ -43,4 +45,37 @@ it('throws an exception if the slug already exists', function () {
     $this->expectExceptionMessage('The slug already exists. Please try a different one.');
 
     (new CreateShortUrlAction)->execute($data); // This should throw an exception.
+});
+
+/**
+ * Test: Update the Shortened URL
+ */
+it('can update the shortened URL with a new custom slug', function () {
+    $url = Url::factory()->create([
+        'original_url' => 'https://example.com/old-url',
+        'custom_slug' => 'oldslug',
+    ]);
+
+    $data = [
+        'custom_slug' => 'newslug',
+    ];
+
+    $updatedUrl = (new UpdateShortUrlAction)->execute($url, $data);
+
+    expect($updatedUrl->custom_slug)->toBe('newslug');
+});
+
+/**
+ * Test: Delete the Shortened URL
+ */
+it('can delete a shortened URL', function () {
+    $url = Url::factory()->create([
+        'original_url' => 'https://example.com/delete-url',
+    ]);
+
+    expect(Url::count())->toBe(1);
+
+    (new DeleteShortUrlAction)->execute($url);
+
+    expect(Url::count())->toBe(0);
 });

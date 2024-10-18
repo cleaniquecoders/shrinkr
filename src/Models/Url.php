@@ -2,14 +2,16 @@
 
 namespace CleaniqueCoders\Shrinkr\Models;
 
+use CleaniqueCoders\Traitify\Concerns\InteractsWithUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Url extends Model
 {
-    use HasFactory;
+    use HasFactory, InteractsWithUuid;
 
     protected $fillable = [
+        'uuid',
         'original_url',
         'shortened_url',
         'custom_slug',
