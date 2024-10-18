@@ -5,9 +5,14 @@ namespace CleaniqueCoders\Shrinkr\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use CleaniqueCoders\Shrinkr\ShrinkrServiceProvider;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Orchestra\Testbench\Attributes\WithMigration;
 
+#[WithMigration]
 class TestCase extends Orchestra
 {
+    use RefreshDatabase;
+    
     protected function setUp(): void
     {
         parent::setUp();
