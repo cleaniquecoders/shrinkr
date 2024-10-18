@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace CleaniqueCoders\Shrinkr\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ShrinkrCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'shrinkr';
 
     public $description = 'My command';
 
