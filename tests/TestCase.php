@@ -18,8 +18,10 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'CleaniqueCoders\\Shrinkr\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Workbench\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            // fn (string $modelName) => 'CleaniqueCoders\\Shrinkr\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
     }
 
     protected function getPackageProviders($app)

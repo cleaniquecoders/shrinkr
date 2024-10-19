@@ -15,14 +15,19 @@ class CreateShortUrlAction
         if (Url::where('shortened_url', $slug)->orWhere('custom_slug', $slug)->exists()) {
             throw new \Exception('The slug already exists. Please try a different one.');
         }
-
-        return Url::create([
+        $_data = [
             'uuid' => data_get($data, 'uuid', Str::orderedUuid()),
             'original_url' => $data['original_url'],
             'shortened_url' => $slug,
             'custom_slug' => $data['custom_slug'] ?? null,
             'is_expired' => false,
-        ]);
+        ];
+
+        if (isset($data['user_id'])) {
+            $_data['user_id'] = $data['user_id'];
+        }
+
+        return Url::create($_data);
     }
 
     private function generateShortCode()
