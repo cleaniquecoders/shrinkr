@@ -1,7 +1,3 @@
-Here’s the **updated README** to reflect the new logging feature and improvements.
-
----
-
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/cleaniquecoders/shrinkr.svg?style=flat-square)](https://packagist.org/packages/cleaniquecoders/shrinkr)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
@@ -19,11 +15,16 @@ Shrinkr makes it easy to convert long URLs into short, shareable links. With fea
 
 ## Features
 
-- **Shorten URLs** with or without custom slugs.
-- **Analytics tracking**: Track clicks, referrers, IP addresses, and devices.
-- **Branded domains**: Use custom domains for shortened URLs.
-- **Configurable logging**: Store logs in files or databases.
-- **API support**: Programmatically shorten and resolve URLs.
+- [x] **Shorten URLs** with or without custom slugs.
+- [x] **Analytics tracking**: Track clicks, referrers, IP addresses, and devices.
+- [ ] **Branded domains**: Use custom domains for shortened URLs.
+- [x] **Configurable logging**: Store logs in files or databases.
+- [ ] **API support**: Programmatically shorten and resolve URLs.
+- [ ] **Rate Limiting**: To prevent abuse (e.g., spamming requests to shorten URLs or resolve them).
+- [ ] **Protected URLs**: Add password protection or other access restrictions to certain URLs, ensuring only authorized users can access the content.
+- [ ] **QR Codes**: Provide users with QR codes for easy sharing of URLs, especially on mobile devices.
+- [ ] **Link Health Monitoring**: Ensure that the original URLs are still reachable and valid & automatically disable or notify users if a link becomes broken or inactive.
+- [ ] **Event & Listeners**: Improve system decoupling by using events to trigger actions asynchronously (e.g., logging clicks, sending notifications).
 
 ---
 
@@ -144,4 +145,3 @@ Report security vulnerabilities by reviewing [our security policy](../../securit
 ## License
 
 Shrinkr is open-sourced software licensed under the [MIT license](LICENSE.md).
-
