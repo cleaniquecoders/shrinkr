@@ -1,6 +1,13 @@
 <?php
 
 // config for CleaniqueCoders/Shrinkr
-return [
 
+use CleaniqueCoders\Shrinkr\Actions\LogToFile;
+use CleaniqueCoders\Shrinkr\Http\Controllers\RedirectController;
+
+return [
+    'prefix' => 's',
+    'controller' => RedirectController::class,
+    'route-name' => 'shrnkr.redirect',
+    'logger' => LogToFile::class,
 ];
