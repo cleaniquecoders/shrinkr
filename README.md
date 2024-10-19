@@ -78,7 +78,7 @@ Here’s a basic usage example:
 use CleaniqueCoders\Shrinkr\Facades\Shrinkr;
 
 // Shorten a URL
-$shortUrl = Shrinkr::shorten('https://example.com/long-url');
+$shortUrl = Shrinkr::shorten('https://example.com/long-url', auth()->user());
 echo $shortUrl; // Outputs: https://yourdomain.com/abc123
 
 // Retrieve the original URL
