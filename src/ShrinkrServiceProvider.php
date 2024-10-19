@@ -23,7 +23,6 @@ class ShrinkrServiceProvider extends PackageServiceProvider
                 'create_shrinkr_table',
                 'create_redirect_logs_table'
             )
-            ->hasRoute('shrinkr')
-            ->hasCommand(ShrinkrCommand::class);
+            ->hasRoute('shrinkr');
     }
 }
