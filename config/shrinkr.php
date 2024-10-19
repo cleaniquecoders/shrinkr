@@ -2,7 +2,7 @@
 
 // config for CleaniqueCoders/Shrinkr
 
-use CleaniqueCoders\Shrinkr\Actions\LogToFile;
+use CleaniqueCoders\Shrinkr\Actions\Logger\LogToFile;
 use CleaniqueCoders\Shrinkr\Http\Controllers\RedirectController;
 
 return [

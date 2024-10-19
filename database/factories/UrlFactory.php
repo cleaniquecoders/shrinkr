@@ -12,7 +12,7 @@ class UrlFactory extends Factory
     public function definition()
     {
         return [
-            'original_url' => $this->faker->url,
+            'original_url' => fake()->url(),
             'shortened_url' => $this->generateShortCode(),
             'custom_slug' => null,
             'is_expired' => false,

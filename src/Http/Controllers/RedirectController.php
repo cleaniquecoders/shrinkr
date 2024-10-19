@@ -2,10 +2,10 @@
 
 namespace CleaniqueCoders\Shrinkr\Http\Controllers;
 
-use CleaniqueCoders\Shrinkr\Actions\LogToFile;
+use CleaniqueCoders\Shrinkr\Actions\Logger\LogToFile;
 use CleaniqueCoders\Shrinkr\Models\Url;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Jenssegers\Agent\Agent;
 
 class RedirectController
 {
@@ -22,7 +22,10 @@ class RedirectController
         }
 
         // Optional: Log click analytics (you can enhance this as needed)
-        app(config('shrinkr.logger', LogToFile::class))->log($url, $request);
+        $agent = new Agent;
+        $agent->setUserAgent($request->userAgent());
+
+        app(config('shrinkr.logger', LogToFile::class))->log($url, $request, $agent);
 
         // Redirect the user to the original URL (301 or 302 redirect)
         return redirect()->away($url->original_url, 302);
