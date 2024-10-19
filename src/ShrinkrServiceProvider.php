@@ -19,7 +19,10 @@ class ShrinkrServiceProvider extends PackageServiceProvider
             ->name('shrinkr')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_shrinkr_table')
+            ->hasMigrations(
+                'create_shrinkr_table',
+                'create_redirect_logs_table'
+            )
             ->hasRoute('shrinkr')
             ->hasCommand(ShrinkrCommand::class);
     }

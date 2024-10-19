@@ -2,6 +2,7 @@
 
 use CleaniqueCoders\Shrinkr\Models\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 
 uses(RefreshDatabase::class);
 
@@ -10,6 +11,7 @@ uses(RefreshDatabase::class);
  */
 it('redirects', function () {
     Url::factory()->create([
+        'uuid' => Str::orderedUuid(),
         'original_url' => 'https://example.com',
         'shortened_url' => 'abc123',
     ]);

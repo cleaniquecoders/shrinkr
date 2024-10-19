@@ -35,5 +35,8 @@ class TestCase extends Orchestra
 
         $migration = include __DIR__.'/../database/migrations/create_shrinkr_table.php.stub';
         $migration->up();
+
+        $migration = include __DIR__.'/../database/migrations/create_redirect_logs_table.php.stub';
+        $migration->up();
     }
 }

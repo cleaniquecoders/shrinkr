@@ -4,6 +4,7 @@ use CleaniqueCoders\Shrinkr\Actions\CreateShortUrlAction;
 use CleaniqueCoders\Shrinkr\Actions\DeleteShortUrlAction;
 use CleaniqueCoders\Shrinkr\Actions\UpdateShortUrlAction;
 use CleaniqueCoders\Shrinkr\Models\Url;
+use Illuminate\Support\Str;
 
 beforeEach(function () {
     Url::truncate(); // Clean up the table before each test.
@@ -11,6 +12,7 @@ beforeEach(function () {
 
 it('can create a shortened URL', function () {
     $data = [
+        'uuid' => Str::orderedUuid(),
         'original_url' => 'https://example.com/some-long-url',
     ];
 
@@ -52,6 +54,7 @@ it('throws an exception if the slug already exists', function () {
  */
 it('can update the shortened URL with a new custom slug', function () {
     $url = Url::factory()->create([
+        'uuid' => Str::orderedUuid(),
         'original_url' => 'https://example.com/old-url',
         'custom_slug' => 'oldslug',
     ]);
@@ -70,6 +73,7 @@ it('can update the shortened URL with a new custom slug', function () {
  */
 it('can delete a shortened URL', function () {
     $url = Url::factory()->create([
+        'uuid' => Str::orderedUuid(),
         'original_url' => 'https://example.com/delete-url',
     ]);
 
