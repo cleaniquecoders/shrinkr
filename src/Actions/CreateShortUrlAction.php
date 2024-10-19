@@ -3,6 +3,7 @@
 namespace CleaniqueCoders\Shrinkr\Actions;
 
 use CleaniqueCoders\Shrinkr\Models\Url;
+use Illuminate\Support\Str;
 
 class CreateShortUrlAction
 {
@@ -16,6 +17,7 @@ class CreateShortUrlAction
         }
 
         return Url::create([
+            'uuid' => data_get($data, 'uuid', Str::orderedUuid()),
             'original_url' => $data['original_url'],
             'shortened_url' => $slug,
             'custom_slug' => $data['custom_slug'] ?? null,
