@@ -23,7 +23,7 @@ Shrinkr makes it easy to convert long URLs into short, shareable links. With fea
 - [ ] **Rate Limiting**: To prevent abuse (e.g., spamming requests to shorten URLs or resolve them).
 - [ ] **Protected URLs**: Add password protection or other access restrictions to certain URLs, ensuring only authorized users can access the content.
 - [ ] **QR Codes**: Provide users with QR codes for easy sharing of URLs, especially on mobile devices.
-- [ ] **Link Health Monitoring**: Ensure that the original URLs are still reachable and valid & automatically disable or notify users if a link becomes broken or inactive.
+- [x] **Link Health Monitoring**: Ensure that the original URLs are still reachable and valid & automatically disable or notify users if a link becomes broken or inactive.
 - [x] **Event & Listeners**: Improve system decoupling by using events to trigger actions asynchronously (e.g., logging clicks, sending notifications).
 - [x] **Expiry**: Allow expiry to be set - in minutes.
 
@@ -211,6 +211,67 @@ $schedule->command('shrinkr:check-expiry')->hourly();
 ```
 
 ---
+
+### **6. Monitor URL Health**
+
+The **Link Health Monitoring** feature allows you to **check if URLs are reachable** and mark them as **active or expired**.
+
+#### **Check Health Action**
+
+Use the `CheckUrlHealthAction` to **manually check the health** of a specific URL.
+
+```php
+use CleaniqueCoders\Shrinkr\Actions\CheckUrlHealthAction;
+use CleaniqueCoders\Shrinkr\Models\Url;
+
+$url = Url::find(1); // Retrieve URL instance
+
+$action = new CheckUrlHealthAction();
+$isHealthy = $action->execute($url);
+
+if ($isHealthy) {
+    echo "URL is active.";
+} else {
+    echo "URL is expired.";
+}
+```
+
+#### **Check Health Command**
+
+Use the Artisan command to **check the health of all URLs** in bulk.
+
+```bash
+php artisan shrinkr:check-health
+```
+
+This command will:
+
+1. **Check the status** of all URLs.
+2. **Mark expired URLs** and dispatch the `UrlExpired` event.
+3. **Provide real-time output** on the status of each URL.
+
+Example output:
+
+```
+URL abc123 is now marked as active.
+URL xyz456 is now marked as expired.
+URL health check completed.
+```
+
+#### **Schedule the Health Check Command**
+
+You can **automatically run the health check** at regular intervals using Laravel’s scheduler.
+
+In your **`app/Console/Kernel.php`**:
+
+```php
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('shrinkr:check-health')->hourly();
+}
+```
+
+This will ensure that all URLs are **continuously monitored** and marked as expired when necessary.
 
 ## Redirect Tracking
 
