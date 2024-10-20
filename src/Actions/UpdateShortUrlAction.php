@@ -2,8 +2,8 @@
 
 namespace CleaniqueCoders\Shrinkr\Actions;
 
-use CleaniqueCoders\Shrinkr\Models\Url;
 use CleaniqueCoders\Shrinkr\Exceptions\SlugAlreadyExistsException;
+use CleaniqueCoders\Shrinkr\Models\Url;
 
 class UpdateShortUrlAction
 {
