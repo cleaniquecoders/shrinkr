@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('shortened_url')->unique();
             $table->string('custom_slug')->nullable()->unique();
             $table->boolean('is_expired')->default(false);
+            $table->dateTime('expires_at')->nullable();
+            $table->dateTime('recheck_at')->nullable();
             $table->timestamps();
         });
     }

@@ -17,6 +17,11 @@ class UpdateShortUrlAction
             }
         }
 
+        if (data_get($data, 'expiry_duration')) {
+            $data['expires_at'] = now()->addMinutes(data_get($data, 'expiry_duration'));
+            unset($data['expiry_duration']);
+        }
+
         $url->update($data);
 
         return $url;

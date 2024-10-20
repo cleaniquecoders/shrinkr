@@ -27,6 +27,12 @@ class CreateShortUrlAction
             $_data['user_id'] = $data['user_id'];
         }
 
+        $expiry = data_get($data, 'expiry_duration')
+            ? now()->addMinutes(data_get($data, 'expiry_duration'))
+            : null;
+
+        $_data['expires_at'] = $expiry;
+
         return Url::create($_data);
     }
 

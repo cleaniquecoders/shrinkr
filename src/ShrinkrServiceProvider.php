@@ -2,6 +2,7 @@
 
 namespace CleaniqueCoders\Shrinkr;
 
+use CleaniqueCoders\Shrinkr\Commands\CheckExpireCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -22,6 +23,7 @@ class ShrinkrServiceProvider extends PackageServiceProvider
                 'create_shrinkr_table',
                 'create_redirect_logs_table'
             )
-            ->hasRoute('shrinkr');
+            ->hasRoute('shrinkr')
+            ->hasCommand(CheckExpireCommand::class);
     }
 }
