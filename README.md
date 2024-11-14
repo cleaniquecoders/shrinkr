@@ -17,7 +17,7 @@ Shrinkr makes it easy to convert long URLs into short, shareable links. With fea
 
 - [x] **Shorten URLs** with or without custom slugs.
 - [x] **Analytics tracking**: Track clicks, referrers, IP addresses, and devices.
-- [ ] **Branded domains**: Use custom domains for shortened URLs.
+- [x] **Branded domains**: Use custom domains for shortened URLs.
 - [x] **Configurable logging**: Store logs in files or databases.
 - [ ] **API support**: Programmatically shorten and resolve URLs.
 - [ ] **Rate Limiting**: To prevent abuse (e.g., spamming requests to shorten URLs or resolve them).
