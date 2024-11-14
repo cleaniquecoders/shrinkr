@@ -49,6 +49,12 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.os == 'windows-latest' && '^^^' || '' }}${{ matrix.carbon }}" --no-interaction --no-update
+
+          # Conditionally install guzzlehttp/promises and guzzlehttp/psr7 if Laravel 10 and PHP 8.3
+          if [[ "${{ matrix.laravel }}" == "10.*" && "${{ matrix.php }}" == "8.3" ]]; then
+            composer require guzzlehttp/promises guzzlehttp/psr7 --no-interaction
+          fi
+
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
