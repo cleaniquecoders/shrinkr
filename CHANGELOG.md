@@ -2,6 +2,25 @@
 
 All notable changes to `shrinkr` will be documented in this file.
 
+## v1.0.3 - 2024-11-14
+
+### Shrinkr v1.0.3 Release Notes
+
+**Full Changelog**: https://github.com/cleaniquecoders/shrinkr/compare/v1.0.2...v1.0.3
+
+#### Enhancements
+
+- Allow to set middleware to the Shrinkr route. By default the middleware used is `['throttle:60,1']`. You can any middleware you think is suitable such as `['auth','verified','throttle:60,1']`.
+  
+- Allow to set custom domain for the Shrnkr by setting the `domain` key in `config/shrinkr.php`.
+  
+- Update code base to comply with PHPStan Level 9 (still few pending for fixes - contribution much appreciated).
+  
+
+#### Upgrade Notes
+
+- Update your `shrinkr.php` configuration file to customize rate limiting and enable protected URLs if needed.
+
 ## v1.0.2 - 2024-10-20
 
 ### **Monitor URL Health**
@@ -27,6 +46,7 @@ if ($isHealthy) {
     echo "URL is expired.";
 }
 
+
 ```
 #### **Check Health Command**
 
@@ -34,6 +54,7 @@ Use the Artisan command to **check the health of all URLs** in bulk.
 
 ```bash
 php artisan shrinkr:check-health
+
 
 ```
 This command will:
@@ -49,6 +70,7 @@ URL abc123 is now marked as active.
 URL xyz456 is now marked as expired.
 URL health check completed.
 
+
 ```
 #### **Schedule the Health Check Command**
 
@@ -61,6 +83,7 @@ protected function schedule(Schedule $schedule)
 {
     $schedule->command('shrinkr:check-health')->hourly();
 }
+
 
 ```
 This will ensure that all URLs are **continuously monitored** and marked as expired when necessary.
