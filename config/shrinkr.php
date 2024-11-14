@@ -64,6 +64,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define the middleware for the Shrinkr routes. By default,
+    | it includes a throttle setting, allowing up to 60 requests per minute.
+    | Adjust this or add additional middleware as needed.
+    |
+    */
+
+    'middleware' => ['throttle:60,1'],
+
+    /*
+    |--------------------------------------------------------------------------
     | Logger
     |--------------------------------------------------------------------------
     |
