@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 return [
     'prefix' => 's',
     'controller' => RedirectController::class,
+    'domain' => null,
     'route-name' => 'shrnkr.redirect',
     'logger' => LogToFile::class,
     'models' => [
