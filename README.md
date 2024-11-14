@@ -273,7 +273,9 @@ protected function schedule(Schedule $schedule)
 
 This will ensure that all URLs are **continuously monitored** and marked as expired when necessary.
 
-## Redirect Tracking
+---
+
+### **7. Redirect Tracking**
 
 The redirect feature tracks detailed information such as:
 
@@ -290,6 +292,20 @@ Example database log entry:
 | 1   | 192.168.1.1 | Chrome  | Windows  | google.com   | 2024-10-18 12:34:56 |
 
 ---
+
+### **8. Routing**
+
+You can configure custom domain for the URL by configuring:
+
+```php
+'domain' => 'bite.ly',
+```
+
+You may also change the middleware or add new one by configuring:
+
+```php
+'middleware' => ['auth', 'verified', 'throttle:600,1']
+```
 
 ## Testing
 
