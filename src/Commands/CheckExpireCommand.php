@@ -6,13 +6,32 @@ use CleaniqueCoders\Shrinkr\Events\UrlExpired;
 use CleaniqueCoders\Shrinkr\Models\Url;
 use Illuminate\Console\Command;
 
+/**
+ * Class CheckExpireCommand
+ *
+ * Command to check for expired URLs and mark them as expired.
+ * Dispatches a UrlExpired event for each expired URL.
+ */
 class CheckExpireCommand extends Command
 {
+    /**
+     * The console command signature.
+     *
+     * @var string
+     */
     protected $signature = 'shrinkr:check-expiry';
 
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'Check and mark expired URLs';
 
-    public function handle()
+    /**
+     * Execute the console command.
+     */
+    public function handle(): void
     {
         // Query for URLs that have passed their expiry and are not marked as expired
         $expiredUrls = Url::where('expires_at', '<=', now())
@@ -27,7 +46,6 @@ class CheckExpireCommand extends Command
 
         foreach ($expiredUrls as $url) {
             $url->update(['is_expired' => true]);
-
             UrlExpired::dispatch($url);
         }
 

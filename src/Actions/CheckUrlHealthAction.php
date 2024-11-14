@@ -10,6 +10,8 @@ class CheckUrlHealthAction
 {
     /**
      * Execute the health check for the given URL.
+     *
+     * @param  $url  \CleaniqueCoders\Shrinkr\Models\Url Record of the shortened URL
      */
     public function execute(Url $url): bool
     {

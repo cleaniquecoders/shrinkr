@@ -11,5 +11,5 @@ use Jenssegers\Agent\Agent;
  */
 interface Logger
 {
-    public function log(Url $url, Request $request, Agent $agent);
+    public function log(Url $url, Request $request, Agent $agent): void;
 }

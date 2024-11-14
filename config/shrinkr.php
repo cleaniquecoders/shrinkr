@@ -1,7 +1,5 @@
 <?php
 
-// Configuration for CleaniqueCoders/Shrinkr package
-
 use CleaniqueCoders\Shrinkr\Actions\Logger\LogToFile;
 use CleaniqueCoders\Shrinkr\Http\Controllers\RedirectController;
 use CleaniqueCoders\Shrinkr\Models\RedirectLog;

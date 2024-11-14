@@ -21,6 +21,6 @@ class UrlFactory extends Factory
 
     private function generateShortCode()
     {
-        return substr(md5(uniqid(rand(), true)), 0, 6);
+        return substr(md5(uniqid((string) rand(), true)), 0, 6);
     }
 }
