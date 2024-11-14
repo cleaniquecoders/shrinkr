@@ -20,7 +20,7 @@ Shrinkr makes it easy to convert long URLs into short, shareable links. With fea
 - [x] **Branded domains**: Use custom domains for shortened URLs.
 - [x] **Configurable logging**: Store logs in files or databases.
 - [ ] **API support**: Programmatically shorten and resolve URLs.
-- [ ] **Rate Limiting**: To prevent abuse (e.g., spamming requests to shorten URLs or resolve them).
+- [x] ~~**Rate Limiting**: To prevent abuse (e.g., spamming requests to shorten URLs or resolve them).~~ **Middleware**: Added middleware configuration. Default is `throttle:60,1`.
 - [ ] **Protected URLs**: Add password protection or other access restrictions to certain URLs, ensuring only authorized users can access the content.
 - [ ] **QR Codes**: Provide users with QR codes for easy sharing of URLs, especially on mobile devices.
 - [x] **Link Health Monitoring**: Ensure that the original URLs are still reachable and valid & automatically disable or notify users if a link becomes broken or inactive.
