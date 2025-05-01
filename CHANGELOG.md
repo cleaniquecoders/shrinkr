@@ -2,6 +2,10 @@
 
 All notable changes to `shrinkr` will be documented in this file.
 
+## Added Laravel 12 and PHP 8.4 Support - 2025-05-01
+
+**Full Changelog**: https://github.com/cleaniquecoders/shrinkr/compare/v1.0.3...1.1.0
+
 ## v1.0.3 - 2024-11-14
 
 ### Shrinkr v1.0.3 Release Notes
@@ -47,6 +51,7 @@ if ($isHealthy) {
 }
 
 
+
 ```
 #### **Check Health Command**
 
@@ -54,6 +59,7 @@ Use the Artisan command to **check the health of all URLs** in bulk.
 
 ```bash
 php artisan shrinkr:check-health
+
 
 
 ```
@@ -71,6 +77,7 @@ URL xyz456 is now marked as expired.
 URL health check completed.
 
 
+
 ```
 #### **Schedule the Health Check Command**
 
@@ -83,6 +90,7 @@ protected function schedule(Schedule $schedule)
 {
     $schedule->command('shrinkr:check-health')->hourly();
 }
+
 
 
 ```
