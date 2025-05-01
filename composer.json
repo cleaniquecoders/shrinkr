@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.2 | ^8.4",
         "cleaniquecoders/traitify": "^1.0",
         "illuminate/contracts": "^10.0||^11.0",
         "jenssegers/agent": "^2.6",
