@@ -3,72 +3,87 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/cleaniquecoders/shrinkr/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/cleaniquecoders/shrinkr/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/cleaniquecoders/shrinkr.svg?style=flat-square)](https://packagist.org/packages/cleaniquecoders/shrinkr)
 
----
-
 # Shrinkr
 
-Shrinkr is a Laravel package for shortening URLs, offering custom slugs, analytics, branded domains, and API integration.
+**Shrinkr** is a powerful Laravel package for shortening URLs with custom slugs, comprehensive analytics, health monitoring, and seamless integration.
 
-Shrinkr makes it easy to convert long URLs into short, shareable links. With features like **custom slugs**, **click analytics**, **branded domains**, and seamless **API support**, Shrinkr empowers users to manage URLs effectively.
+Transform long URLs into short, shareable links with features like **custom slugs**, **click tracking**, **branded domains**, **expiry management**, and **health monitoring**.
 
 ---
 
 ## Features
 
-- [x] **Shorten URLs** with or without custom slugs.
-- [x] **Analytics tracking**: Track clicks, referrers, IP addresses, and devices.
-- [x] **Branded domains**: Use custom domains for shortened URLs.
-- [x] **Configurable logging**: Store logs in files or databases.
-- [ ] **API support**: Programmatically shorten and resolve URLs.
-- [x] ~~**Rate Limiting**: To prevent abuse (e.g., spamming requests to shorten URLs or resolve them).~~ **Middleware**: Added middleware configuration. Default is `throttle:60,1`.
-- [ ] ~~**Protected URLs**: Add password protection or other access restrictions to certain URLs, ensuring only authorized users can access the content.~~ After further research, it's not relevant if the original URL is unprotected. Hence, this feature will be skip.
-- [ ] ~~**QR Codes**: Provide users with QR codes for easy sharing of URLs, especially on mobile devices.~~ Use package such as [Simple QrCode](https://github.com/SimpleSoftwareIO/simple-qrcode) to generate the QR Code for the shortened URL.
-- [x] **Link Health Monitoring**: Ensure that the original URLs are still reachable and valid & automatically disable or notify users if a link becomes broken or inactive.
-- [x] **Event & Listeners**: Improve system decoupling by using events to trigger actions asynchronously (e.g., logging clicks, sending notifications).
-- [x] **Expiry**: Allow expiry to be set - in minutes.
+✅ **URL Shortening** - Create short URLs with auto-generated or custom slugs
+✅ **Analytics Tracking** - Track clicks, referrers, IP addresses, browsers, and devices
+✅ **Branded Domains** - Use custom domains for your shortened URLs
+✅ **Expiry Management** - Set expiration times for temporary links
+✅ **Health Monitoring** - Automatically check if original URLs are still reachable
+✅ **Event System** - React to URL access and expiry events
+✅ **Flexible Logging** - Log to files or database
+✅ **Rate Limiting** - Built-in middleware to prevent abuse
+✅ **Artisan Commands** - Automate maintenance tasks
 
 ---
 
-## Installation
+## Quick Start
 
-Install the package via Composer:
+### Installation
 
 ```bash
 composer require cleaniquecoders/shrinkr
-```
-
-Publish the migration files and migrate:
-
-```bash
 php artisan vendor:publish --tag="shrinkr-migrations"
 php artisan migrate
-```
-
-Publish the config file:
-
-```bash
 php artisan vendor:publish --tag="shrinkr-config"
 ```
 
-The published configuration file (`config/shrinkr.php`) will allow you to customize settings.
+### Basic Usage
+
+```php
+use CleaniqueCoders\Shrinkr\Facades\Shrinkr;
+
+// Shorten a URL
+$shortUrl = Shrinkr::shorten('https://example.com/long-url', auth()->id());
+// Result: https://yourdomain.com/s/abc123
+
+// With custom slug
+$shortUrl = Shrinkr::shorten('https://example.com', auth()->id(), [
+    'custom_slug' => 'my-link',
+]);
+// Result: https://yourdomain.com/s/my-link
+
+// With expiry (60 minutes)
+$shortUrl = Shrinkr::shorten('https://example.com', auth()->id(), [
+    'expiry_duration' => 60,
+]);
+
+// Resolve short URL to original
+$originalUrl = Shrinkr::resolve('abc123');
+```
 
 ---
 
-## Configuration
+## Documentation
 
-You can configure **logging options** by modifying the `config/shrinkr.php` file.
+For comprehensive documentation, see the [docs](docs/) directory:
 
-```php
-return [
-    'logger' => \CleaniqueCoders\Shrinkr\Actions\Logger\LogToFile::class, // Default logger
-];
-```
+- **[Getting Started](docs/01-getting-started/)** - Installation, configuration, and quick start
+- **[Configuration](docs/02-configuration/)** - Complete configuration reference
+- **[Usage](docs/03-usage/)** - Shortening, resolving, updating, and deleting URLs
+- **[Features](docs/04-features/)** - Analytics, expiry, events, health monitoring
+- **[API Reference](docs/05-api-reference/)** - Complete API documentation
+- **[Development](docs/06-development/)** - Testing and contributing
 
-To log to a **database**, change the logger to:
+### Key Documentation Pages
 
-```php
-'logger' => \CleaniqueCoders\Shrinkr\Actions\Logger\LogToDatabase::class,
-```
+- [Installation Guide](docs/01-getting-started/01-installation.md)
+- [Quick Start Guide](docs/01-getting-started/03-quick-start.md)
+- [Configuration Reference](docs/02-configuration/01-complete-reference.md)
+- [Shortening URLs](docs/03-usage/01-shortening-urls.md)
+- [Analytics Tracking](docs/04-features/02-analytics.md)
+- [URL Expiry](docs/04-features/01-url-expiry.md)
+- [Health Monitoring](docs/04-features/04-health-monitoring.md)
+
+---
 
 ---
 
