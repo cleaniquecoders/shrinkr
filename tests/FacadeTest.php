@@ -3,7 +3,7 @@
 use CleaniqueCoders\Shrinkr\Facades\Shrinkr;
 use CleaniqueCoders\Shrinkr\Models\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Workbench\App\Models\User as User;
+use Workbench\App\Models\User;
 
 uses(RefreshDatabase::class);
 

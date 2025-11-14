@@ -18,8 +18,9 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Workbench\\Database\\Factories\\'.class_basename($modelName).'Factory'
-            // fn (string $modelName) => 'CleaniqueCoders\\Shrinkr\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => str_starts_with($modelName, 'CleaniqueCoders\\Shrinkr\\')
+                ? 'CleaniqueCoders\\Shrinkr\\Database\\Factories\\'.class_basename($modelName).'Factory'
+                : 'Workbench\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
 
     }
@@ -39,6 +40,12 @@ class TestCase extends Orchestra
         $migration->up();
 
         $migration = include __DIR__.'/../database/migrations/create_redirect_logs_table.php.stub';
+        $migration->up();
+
+        $migration = include __DIR__.'/../database/migrations/create_webhooks_table.php.stub';
+        $migration->up();
+
+        $migration = include __DIR__.'/../database/migrations/create_webhook_calls_table.php.stub';
         $migration->up();
     }
 }

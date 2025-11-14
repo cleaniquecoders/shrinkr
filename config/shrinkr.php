@@ -109,4 +109,105 @@ return [
         'redirect-log' => RedirectLog::class,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | API Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configure the RESTful API endpoints for Shrinkr. The API provides
+    | programmatic access to create, read, update, and delete shortened URLs.
+    | You can enable/disable the API and customize its prefix and middleware.
+    |
+    */
+
+    'api' => [
+
+        // Enable or disable API routes
+        'enabled' => true,
+
+        // API route prefix (e.g., /api/shrinkr/urls)
+        'prefix' => 'api/shrinkr',
+
+        // Middleware applied to API routes. Add your own authentication,
+        // rate limiting, or other middleware as needed.
+        // Example: ['api', 'auth:sanctum', 'throttle:60,1']
+        'middleware' => ['api'],
+
+        // Route name prefix for API routes (e.g., shrinkr.api.urls.index)
+        'route_name_prefix' => 'shrinkr.api',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Webhooks Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Webhooks allow you to receive HTTP callbacks when certain events occur,
+    | such as when a URL is accessed or expires. Configure webhook settings,
+    | including middleware and signature verification.
+    |
+    */
+
+    'webhooks' => [
+
+        // Enable or disable webhook functionality
+        'enabled' => true,
+
+        // Middleware for webhook management endpoints
+        'middleware' => ['api'],
+
+        // Secret key for webhook signature verification (HMAC-SHA256)
+        // Set this in your .env file: SHRINKR_WEBHOOK_SECRET=your-secret-key
+        'secret' => env('SHRINKR_WEBHOOK_SECRET'),
+
+        // Maximum retry attempts for failed webhook deliveries
+        'max_retries' => 3,
+
+        // Timeout for webhook HTTP requests (in seconds)
+        'timeout' => 10,
+
+        // Events that can trigger webhooks
+        'events' => [
+            'url.accessed',
+            'url.expired',
+            'url.created',
+            'url.updated',
+            'url.deleted',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configure third-party notification channels for URL events.
+    | Shrinkr can send notifications to Slack, Discord, email, and more.
+    |
+    */
+
+    'notifications' => [
+
+        // Enable or disable notifications
+        'enabled' => true,
+
+        // Slack notifications
+        'slack' => [
+            'enabled' => env('SHRINKR_SLACK_ENABLED', false),
+            'webhook_url' => env('SHRINKR_SLACK_WEBHOOK_URL'),
+        ],
+
+        // Discord notifications
+        'discord' => [
+            'enabled' => env('SHRINKR_DISCORD_ENABLED', false),
+            'webhook_url' => env('SHRINKR_DISCORD_WEBHOOK_URL'),
+        ],
+
+        // Email notifications
+        'email' => [
+            'enabled' => env('SHRINKR_EMAIL_ENABLED', false),
+            'recipients' => env('SHRINKR_EMAIL_RECIPIENTS', ''), // Comma-separated emails
+        ],
+    ],
+
 ];

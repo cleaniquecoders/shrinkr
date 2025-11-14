@@ -7,6 +7,7 @@ Complete documentation for the Shrinkr URL shortener package for Laravel.
 - [Installation](01-getting-started/01-installation.md) - Get started quickly
 - [Quick Start Guide](01-getting-started/03-quick-start.md) - Your first shortened URL
 - [Configuration Reference](02-configuration/01-complete-reference.md) - All config options
+- [API Documentation](07-api/01-getting-started.md) - RESTful API and integrations
 
 ## Documentation Structure
 
@@ -66,6 +67,15 @@ Resources for testing, contributing, and maintaining Shrinkr.
 - [Testing](06-development/01-testing.md) - Testing guidelines
 - [Contributing](06-development/02-contributing.md) - How to contribute
 - [Security](06-development/03-security.md) - Security best practices
+
+### 07. API & Integrations
+
+RESTful API, webhooks, and third-party integrations.
+
+- [Getting Started](07-api/01-getting-started.md) - API setup and authentication
+- [URL Endpoints](07-api/02-url-endpoints.md) - CRUD operations via API
+- [Webhooks](07-api/03-webhooks.md) - Real-time event notifications
+- [Notifications](07-api/04-notifications.md) - Slack, Discord, and email alerts
 
 ## Common Tasks
 

@@ -4,6 +4,9 @@ namespace CleaniqueCoders\Shrinkr;
 
 use CleaniqueCoders\Shrinkr\Commands\CheckExpireCommand;
 use CleaniqueCoders\Shrinkr\Commands\CheckHealthCommand;
+use CleaniqueCoders\Shrinkr\Commands\RetryFailedWebhooksCommand;
+use CleaniqueCoders\Shrinkr\Listeners\DispatchWebhooksForUrlEvents;
+use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -22,12 +25,23 @@ class ShrinkrServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigrations(
                 'create_shrinkr_table',
-                'create_redirect_logs_table'
+                'create_redirect_logs_table',
+                'create_webhooks_table',
+                'create_webhook_calls_table'
             )
-            ->hasRoute('shrinkr')
+            ->hasRoutes(['shrinkr', 'api'])
             ->hasCommands(
                 CheckExpireCommand::class,
-                CheckHealthCommand::class
+                CheckHealthCommand::class,
+                RetryFailedWebhooksCommand::class
             );
+    }
+
+    public function packageBooted(): void
+    {
+        // Register event subscribers for webhooks
+        if (config('shrinkr.webhooks.enabled', true)) {
+            Event::subscribe(DispatchWebhooksForUrlEvents::class);
+        }
     }
 }
