@@ -11,24 +11,20 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
-        php: [8.3]
-        laravel: [12.*, 11.*, 10.*]
+        php: [8.4, 8.3]
+        laravel: [12.*]
         stability: [prefer-stable]
         include:
-          - laravel: 11.*
-            testbench: 9.*
-            carbon: ^2.63
-          - laravel: 10.*
-            testbench: 8.*
-            carbon: ^2.63
+          - laravel: 12.*
+            testbench: 10.*
+            carbon: ^3.0
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
     steps:
       - name: Checkout code
@@ -48,18 +44,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:${{ matrix.os == 'windows-latest' && '^^^' || '' }}${{ matrix.carbon }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
           composer require "orchestra/testbench:${{ matrix.testbench }}" --dev --no-interaction --no-update
-
-          # Conditionally install guzzlehttp/guzzle, guzzlehttp/promises, and guzzlehttp/psr7 if Laravel 10 and PHP 8.3
-          if [[ "${{ matrix.laravel }}" == "10.*" && "${{ matrix.php }}" == "8.3" ]]; then
-            composer require guzzlehttp/guzzle guzzlehttp/promises guzzlehttp/psr7 --no-interaction
-          fi
-
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
         run: composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest --ci
+        run: vendor/bin/pest
